@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 
 export async function POST(request: Request) {
     const { to } = await request.json();
@@ -12,10 +13,11 @@ export async function POST(request: Request) {
     }
 
     // Step 1: Define Identities for the Call
-    // The "caller" is the identity of the user initiating the call. For this MVP,
-    // we'll use a hardcoded, generic identity. In a real application, this
-    // would be dynamically set based on the logged-in user's ID or username.
-    const caller = "user_at_home";
+    // In a real application, the "caller" identity would come from your
+    // authentication system (e.g., the logged-in user's ID). For this MVP,
+    // we'll generate a unique, random identity for each call request.
+    // This simulates having a unique user for each session.
+    const caller = randomUUID();
 
     // The "callerId" is your Twilio phone number, which is the number that will
     // be displayed to the person receiving the call.
